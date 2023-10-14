@@ -1,13 +1,3 @@
-import React from "react";
-import PokemonCard from "./components/PokemonCard"; 
-
-import NavBar from "./components/NavBar";
-
-import {useState} from "react";
-
-
-
-
 const pokemonList = 
   [
       {
@@ -50,50 +40,44 @@ const pokemonList =
 
 
 
-function App() 
-{
 
+function NavBar (props) {
+    const { pokemonIndex, onClickPrevious, onClickNext } = props;
+
+
+
+    {pokemonIndex > 0 && (
+        <button onClick={onClickPrevious}>Précédent</button>
+                        )   
+    }
+
+
+
+    
+   {pokemonIndex < pokemonList.length - 1 && (
+         <button onClick={onClickNext}>Suivant</button>
+    ) 
+    }
+
+
+
+
+    return (
+        <div>
+          {pokemonIndex > 0 && (
+            <button onClick={onClickPrevious}>Précédent</button>
+          )}
+    
+          {pokemonIndex < pokemonList.length - 1 && (
+            <button onClick={onClickNext}>Suivant</button>
+          )}
+        </div>
+      );
+    
   
-  const [pokemonIndex, setpokemonIndex] = useState(0);
 
-
-  const handleClickPrevious = () => {
-
-    if(pokemonIndex > 0) 
-        
-    setpokemonIndex(pokemonIndex - 1)
-
-  }
-  
-
-  const handleClickNext = () => {
-     
-    if (pokemonIndex < pokemonList.length - 1 )
-
-    setpokemonIndex(pokemonIndex + 1)
-    
-  }
+   }   
 
 
 
-  return (
-    
-    <div>
-      <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-
-      <NavBar pokemonIndex={pokemonIndex} onClickPrevious={handleClickPrevious} onClickNext={handleClickNext} />
-
-       
-
-
-
-      <p>{pokemonIndex}</p>
-    </div>
-
-    
-  );
-  }
-
-
-
-export default App;
+   export default NavBar
